@@ -1,0 +1,22 @@
+# Byte-compiled files
+__pycache__/
+__init__.py
+*.py[cod]
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# CSV files (to avoid committing data exports)
+*.csv
+
+# macOS system files
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp
+
+exported_rules.csv
