@@ -19,4 +19,4 @@ venv/
 *.log
 *.tmp
 
-exported_rules.csv
+*.csv

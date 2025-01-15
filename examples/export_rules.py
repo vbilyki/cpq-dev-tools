@@ -4,9 +4,9 @@ from tools.quote_tool import get_workflow, find_quote_id_by_name
 from tools.rules_tool import get_all_rules_for_quote, export_rules_to_csv
 
 API_KEY = os.getenv("PANDADOC_API_KEY")
-template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
-quote_name = "Create a quote"
-output_file = "exported_rules.csv"
+template_id = "ba619bc4-2a75-4c68-beb9-2f82b1ccab24"
+quote_name = "Line items from opp 1"
+output_file = "exported_rules_1.csv"
 
 def export_rules_example():
     # Fetch workflow data
