@@ -8,6 +8,7 @@ template_id = "ba619bc4-2a75-4c68-beb9-2f82b1ccab24"
 quote_name = "Line items from opp 1"
 output_file = "exported_rules_1.csv"
 
+
 def export_rules_example():
     # Fetch workflow data
     workflow_data = get_workflow(template_id, API_KEY)
@@ -30,6 +31,7 @@ def export_rules_example():
     # Export rules to CSV
     export_rules_to_csv(all_rules, output_file, API_KEY)
     print(f"Rules exported to file: {os.path.abspath(output_file)}")
+
 
 if __name__ == "__main__":
     export_rules_example()

@@ -7,6 +7,7 @@ API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
 quote_name = "Create a quote"
 
+
 def main():
 
     # Fetch workflow and quote ID
@@ -28,10 +29,10 @@ def main():
             "fn": {
                 "left": {"value": {"value": "item_ctx.qty", "op": "$lookup"}, "op": "$int"},
                 "right": {"value": str(i), "op": "$int"},
-                "op": "$eq"
+                "op": "$eq",
             },
             "data": {"value": "quote_ctx.quote.sections.items", "op": "$lookup"},
-            "op": "$contains"
+            "op": "$contains",
         }
         then_clause = {
             "fn": {
@@ -39,11 +40,11 @@ def main():
                 "name": "upsert_quote_line_item_field_value",
                 "args": {
                     "line_item_id": {"value": "item_ctx.id", "op": "$lookup"},
-                    "line_item_updated_fields": {"price": str(i)}
-                }
+                    "line_item_updated_fields": {"price": str(i)},
+                },
             },
             "data": {"value": "alias.line-items-1", "op": "$lookup"},
-            "op": "$map"
+            "op": "$map",
         }
         create_rule(quote_id, rule_name, when_clause, then_clause, API_KEY)
 
@@ -60,6 +61,7 @@ def main():
     # Delete a specific rule
     if all_rules:
         delete_rule(all_rules[0]["uuid"], API_KEY)
+
 
 if __name__ == "__main__":
     main()

@@ -6,6 +6,7 @@ API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
 quote_name = "Create a quote"
 
+
 def delete_all_rules_example():
 
     # Fetch workflow data
@@ -34,6 +35,7 @@ def delete_all_rules_example():
             print(f"Deleted rule with UUID: {rule_id}")
 
     print("All rules deleted successfully.")
+
 
 if __name__ == "__main__":
     delete_all_rules_example()

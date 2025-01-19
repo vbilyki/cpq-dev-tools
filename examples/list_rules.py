@@ -7,6 +7,7 @@ API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
 quote_name = "Create a quote"
 
+
 def list_rules():
     # Fetch workflow data
     workflow_data = get_workflow(template_id, API_KEY)
@@ -29,6 +30,7 @@ def list_rules():
         print("Listing all rules for the quote:")
         for rule in all_rules:
             print(json.dumps(rule, indent=4))
+
 
 if __name__ == "__main__":
     list_rules()

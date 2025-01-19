@@ -7,6 +7,7 @@ template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
 quote_name = "Create a quote 2"
 input_file = "exported_rules.csv"
 
+
 def import_rules_example():
 
     # Fetch workflow data
@@ -25,6 +26,7 @@ def import_rules_example():
     import_rules_from_csv(input_file, quote_id, API_KEY)
 
     print("Rules imported successfully from the CSV file.")
+
 
 if __name__ == "__main__":
     import_rules_example()

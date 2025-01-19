@@ -7,6 +7,7 @@ template_id = "ba619bc4-2a75-4c68-beb9-2f82b1ccab24"  # Replace with your templa
 quote_name = "Line items from opp 2"  # Replace with your quote name
 rule_name = "List price < sales price "  # Replace with the rule name you are searching for
 
+
 def find_rule_by_name():
 
     # Fetch workflow data
@@ -38,6 +39,7 @@ def find_rule_by_name():
                 return
 
     print(f"Rule with name '{rule_name}' not found.")
+
 
 if __name__ == "__main__":
     find_rule_by_name()

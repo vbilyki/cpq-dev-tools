@@ -3,17 +3,12 @@ import datetime
 
 BASE_URL = "https://api.pandadoc.com/api/rooms/rooms/"
 
+
 def create_room(template_id, name, api_key):
     """Create a PandaDoc Room using a specified template ID and name."""
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "template_uuid": template_id,
-        "name": name
-    }
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+
+    payload = {"template_uuid": template_id, "name": name}
 
     response = requests.post(BASE_URL, headers=headers, json=payload)
 
