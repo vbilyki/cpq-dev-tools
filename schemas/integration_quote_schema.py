@@ -12,7 +12,10 @@ class IntegrationQuote:
     rules: list[Rule]
 
     @staticmethod
-    def from_dict(quote: Quote, rules: list) -> "IntegrationQuote":
+    def from_dict(quote: dict, rules: list) -> "IntegrationQuote":
+        # Parse the Quote part
+        quote = Quote.from_dict(quote)
+
         # Create and return the IntegrationQuote object
         return IntegrationQuote(
             id=quote.id,

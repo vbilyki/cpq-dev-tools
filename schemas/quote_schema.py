@@ -10,6 +10,12 @@ class DataField:
     def from_dict(cls, data_field: dict) -> "DataField":
         return DataField(name=data_field["name"], type=data_field["type"])
 
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "type": self.type,
+        }
+
 
 @dataclass
 class QuoteColumn:
@@ -31,6 +37,12 @@ class QuoteColumn:
             #    id=column["id"]
         )
 
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "type": self.type,
+        }
+
 
 @dataclass
 class SectionTotal:
@@ -40,6 +52,12 @@ class SectionTotal:
     @classmethod
     def from_dict(cls, totals) -> "SectionTotal":
         return SectionTotal(name=totals["name"], type=totals["type"])
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "type": self.type,
+        }
 
 
 @dataclass
@@ -52,6 +70,12 @@ class Section:
         columns = [QuoteColumn.from_dict(column) for column in section["line_item_fields"]]
         section_totals = [SectionTotal.from_dict(total) for total in section["fields"]]
         return Section(columns=columns, totals=section_totals)
+
+    def to_dict(self) -> dict:
+        return {
+            "line_item_fields": [column.to_dict() for column in self.columns],
+            "fields": [total.to_dict() for total in self.totals],
+        }
 
 
 @dataclass
@@ -71,6 +95,16 @@ class Quote:
             data_fields=data_fields,
             sections=sections,
         )
+
+    def to_dict(self) -> dict:
+        return {
+            "uuid": self.id,
+            "version_id": self.version_id,
+            "data_fields": [field.to_dict() for field in self.data_fields],
+            "data_schema": {
+                "sections": [section.to_dict() for section in self.sections],
+            },
+        }
 
     def get_unique_columns(self) -> list[QuoteColumn]:
         seen_names = set()

@@ -8,6 +8,7 @@ def get_workflow(template_id, api_key):
     url = f"{BASE_URL}/processes/constructor/templates/{template_id}"
     return make_request("GET", url, api_key)
 
+
 def fetch_quote_settings_from_workflow(template_id, quote_name, api_key):
     """Fetch quote and associated rules from a workflow."""
     workflow_data = get_workflow(template_id, api_key)

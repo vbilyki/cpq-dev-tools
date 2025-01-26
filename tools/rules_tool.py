@@ -3,6 +3,7 @@ import csv
 
 from api.rules_api import get_rule_by_uuid, create_rule
 
+
 def export_rules_to_csv(rules, csv_file_path, api_key):
     with open(csv_file_path, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
