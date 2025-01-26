@@ -7,7 +7,7 @@ class DataField:
     type: str
 
     @classmethod
-    def from_dict(cls, data_field: dict):
+    def from_dict(cls, data_field: dict) -> "DataField":
         return DataField(name=data_field["name"], type=data_field["type"])
 
 
@@ -18,7 +18,7 @@ class QuoteColumn:
     type: str
 
     @classmethod
-    def from_dict(cls, column: dict):
+    def from_dict(cls, column: dict) -> "QuoteColumn":
         # looks like rules are using types to trace quote default column and
         # labels to trace through the custom columns
         if column["type"] == "text":
@@ -38,7 +38,7 @@ class SectionTotal:
     type: str
 
     @classmethod
-    def from_dict(cls, totals):
+    def from_dict(cls, totals) -> "SectionTotal":
         return SectionTotal(name=totals["name"], type=totals["type"])
 
 
@@ -48,7 +48,7 @@ class Section:
     totals: list
 
     @classmethod
-    def from_dict(cls, section: dict):
+    def from_dict(cls, section: dict) -> "Section":
         columns = [QuoteColumn.from_dict(column) for column in section["line_item_fields"]]
         section_totals = [SectionTotal.from_dict(total) for total in section["fields"]]
         return Section(columns=columns, totals=section_totals)
@@ -62,7 +62,7 @@ class Quote:
     sections: list[Section]
 
     @staticmethod
-    def from_dict(quote: dict):
+    def from_dict(quote: dict) -> "Quote":
         data_fields = [DataField.from_dict(field) for field in quote["data_fields"]]
         sections = [Section.from_dict(section) for section in quote["data_schema"]["sections"]]
         return Quote(

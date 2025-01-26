@@ -6,12 +6,12 @@ from tools.api_client import make_request
 BASE_URL = "https://api.pandadoc.com/api"
 
 
-def create_rule(quote_id, rule_name, when_clause, then_clause, api_key):
+def create_rule(quote_id, rule_name, when_clause, then_clause, api_key, is_active=True):
     url = f"{BASE_URL}/rules/"
     payload = {
         "uuid": str(uuid.uuid4()),
         "name": rule_name,
-        "is_active": True,
+        "is_active": is_active,
         "linked_entity": {"entity_type": "quote", "id": quote_id},
         "when": when_clause,
         "then": then_clause,
@@ -32,6 +32,12 @@ def get_rule_by_uuid(rule_id, api_key):
 def delete_rule(rule_id, api_key):
     url = f"{BASE_URL}/rules/{rule_id}"
     make_request("DELETE", url, api_key)
+
+
+def change_sequence_index(rule_id, api_key, sequence_index):
+    url = f"{BASE_URL}/rules/{rule_id}/sequence_index"
+    payload = {"sequence_index": sequence_index}
+    make_request("PATCH", url, api_key, json=payload)
 
 
 def export_rules_to_csv(rules, csv_file_path, api_key):

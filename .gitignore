@@ -2,9 +2,13 @@
 __pycache__/
 __init__.py
 *.py[cod]
+.idea
 
 # Virtual environment
 venv/
+
+# JSON files
+quote.json
 
 # Environment variables
 .env
