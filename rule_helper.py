@@ -1,5 +1,5 @@
 import argparse
-from examples.copy_rules_between_quotes_in_workflow import add_copy_rules_arguments, copy_rules_between_quotes_in_workflow_main
+from commands.copy_rules_between_quotes_in_workflow import add_copy_rules_arguments, copy_rules_between_quotes_in_workflow_main
 
 
 def main():
@@ -8,12 +8,13 @@ def main():
 
     # Add the global `-t` argument for the Bearer token
     parser.add_argument("-t", "--token", required=True, help="Bearer token for authentication")
+    parser.add_argument("--type", required=True, help="Currently working with which object type")
 
     # Add a subparser for different commands
     subparsers = parser.add_subparsers(dest="command", required=True, help="Available commands")
 
     # Add arguments for `copy_rules`
-    copy_parser = subparsers.add_parser("copy_rules_bw_workflows", help="Copy rules between workflows")
+    copy_parser = subparsers.add_parser("copy_rules", help="Copy rules between workflows")
     add_copy_rules_arguments(copy_parser)
 
     # Add other parsers here
@@ -23,7 +24,7 @@ def main():
     args = parser.parse_args()
 
     # Route to the appropriate function based on the command
-    if args.command == "copy_rules_bw_workflows":
+    if args.command == "copy_rules" and args.type == "workflow":
         copy_rules_between_quotes_in_workflow_main(args)
     else:
         parser.print_help()

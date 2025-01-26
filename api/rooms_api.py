@@ -1,5 +1,4 @@
 import requests
-import datetime
 
 BASE_URL = "https://api.pandadoc.com/api/rooms/rooms/"
 

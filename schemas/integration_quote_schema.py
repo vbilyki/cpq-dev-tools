@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from schemas.quote.schema import Quote, Section, DataField
-from schemas.rules.schema import Rule
+from schemas.quote_schema import Quote, Section, DataField
+from schemas.rules_schema import Rule
 
 
 @dataclass
@@ -12,10 +12,7 @@ class IntegrationQuote:
     rules: list[Rule]
 
     @staticmethod
-    def from_dict(quote: dict, rules: list) -> "IntegrationQuote":
-        # Parse the Quote part
-        quote = Quote.from_dict(quote)
-
+    def from_dict(quote: Quote, rules: list) -> "IntegrationQuote":
         # Create and return the IntegrationQuote object
         return IntegrationQuote(
             id=quote.id,

@@ -2,10 +2,11 @@ import os
 import re
 
 from tools.rules_parse_tool import find_reference_values_and_data_fields
-from tools.rules_tool import get_all_rules_for_quote, get_rule_by_uuid
-from tools.workflow_tool import get_workflow, find_quote_settings_by_name
-from tools.quote_tool import get_quote, get_quote_token
-from schemas.integration.quote_with_rules import IntegrationQuote
+from tools.workflow_tool import find_quote_settings_by_name
+from api.rules_api import get_all_rules_for_quote, get_rule_by_uuid
+from api.workflow_api import get_workflow
+from api.quote_api import get_quote, get_quote_token_from_process
+from schemas.integration_quote_schema import IntegrationQuote
 
 API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "fbc21d17-3147-4928-a328-d5ab77068637"
@@ -28,7 +29,7 @@ def get_integration_quote():
     print(f"Found Quote ID: {quote_id} with version: {version_id}")
 
     # Fetch quote toke
-    quote_token = get_quote_token(template_id, quote_id, API_KEY)
+    quote_token = get_quote_token_from_process(template_id, quote_id, API_KEY)
     # Fetch quote using quote token
     quote = get_quote(quote_id, version_id, quote_token, API_KEY)
     # Fetch rule details and save to the list

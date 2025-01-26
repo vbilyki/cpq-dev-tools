@@ -1,8 +1,9 @@
 import os
 
-from tools.workflow_tool import get_workflow, find_quote_settings_by_name
-from tools.quote_tool import get_quote, get_quote_token
-from schemas.quote.schema import Quote
+from api.workflow_api import get_workflow
+from api.quote_api import get_quote, get_quote_token_from_process
+from schemas.quote_schema import Quote
+from tools.workflow_tool import find_quote_settings_by_name
 
 API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "fbc21d17-3147-4928-a328-d5ab77068637"
@@ -25,7 +26,7 @@ def get_quote_data():
     print(f"Found Quote ID: {quote_id} with version: {version_id}")
 
     # Fetch quote toke
-    quote_token = get_quote_token(template_id, quote_id, API_KEY)
+    quote_token = get_quote_token_from_process(template_id, quote_id, API_KEY)
     # Fetch quote using quote token
     quote = get_quote(quote_id, version_id, quote_token, API_KEY)
     quote_obj = Quote.from_dict(quote)

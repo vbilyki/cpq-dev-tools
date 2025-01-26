@@ -1,6 +1,7 @@
 import os
-from tools.workflow_tool import get_workflow, find_quote_id_by_name
+from api.workflow_api import get_workflow
 from tools.rules_tool import import_rules_from_csv
+from tools.workflow_tool import find_quote_id_by_name
 
 API_KEY = os.getenv("PANDADOC_API_KEY")
 template_id = "a3a5e9ba-b005-4396-a91e-d17d00025746"
